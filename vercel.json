@@ -1,0 +1,33 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/siska",
+      "destination": "https://siska-theta.vercel.app/siska"
+    },
+    {
+      "source": "/siska/:path*",
+      "destination": "https://siska-theta.vercel.app/siska/:path*"
+    },
+    {
+      "source": "/campusfix",
+      "destination": "https://campusfix.vercel.app/campusfix"
+    },
+    {
+      "source": "/campusfix/:path*",
+      "destination": "https://campusfix.vercel.app/campusfix/:path*"
+    },
+    {
+      "source": "/sukaketemu",
+      "destination": "https://sukaketemu.vercel.app/sukaketemu"
+    },
+    {
+      "source": "/sukaketemu/:path*",
+      "destination": "https://sukaketemu.vercel.app/sukaketemu/:path*"
+    },
+    {
+      "source": "/",
+      "destination": "https://YOUR-PORTAL.vercel.app/"
+    }
+  ]
+}
