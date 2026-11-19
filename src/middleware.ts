@@ -7,6 +7,6 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!siska(?:/|$)|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
+    "/((?!(?:siska|campusfix|sukeketemu|archive|paas)(?:/|$)|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
   ],
 };

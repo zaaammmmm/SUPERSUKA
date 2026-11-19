@@ -3,9 +3,15 @@ import { auth0 } from "@/lib/auth0";
 
 type Active = "home" | "layanan" | "tentang";
 
+function initials(label: string) {
+  const parts = label.split(/[\s@.]+/).filter(Boolean);
+  return (parts[0]?.[0] ?? "?").concat(parts[1]?.[0] ?? "").toUpperCase();
+}
+
 export default async function SiteHeader({ active }: { active?: Active }) {
   const session = await auth0.getSession();
   const current = (key: Active) => (active === key ? "page" : undefined);
+  const userLabel = session ? (session.user.name ?? session.user.email ?? "") : "";
 
   return (
     <header className="site-header">
@@ -24,12 +30,15 @@ export default async function SiteHeader({ active }: { active?: Active }) {
         <div className="header-actions">
           {session ? (
             <>
-              <span className="header-user">{session.user.name ?? session.user.email}</span>
+              <span className="header-user">
+                <span className="avatar" aria-hidden="true">{initials(userLabel)}</span>
+                <span className="header-user-name">{userLabel}</span>
+              </span>
               <a className="btn btn-primary btn-sm" href="/auth/logout">Keluar</a>
             </>
           ) : (
             <>
-              <Link className="btn btn-primary btn-sm link-plain" href="/login">Masuk</Link>
+              <Link className="btn btn-primary btn-sm" href="/login">Masuk</Link>
               {/* <Link className="btn btn-primary btn-sm" href="/login?mode=signup">Daftar</Link> */}
             </>
           )}

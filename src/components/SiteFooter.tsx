@@ -20,6 +20,11 @@ export default function SiteFooter() {
           <Link href="/dashboard">Dashboard</Link>
         </nav>
       </div>
+      <div className="footer-bottom">
+        <div className="container">
+          <p>© {new Date().getFullYear()} Super App</p>
+        </div>
+      </div>
     </footer>
   );
 }

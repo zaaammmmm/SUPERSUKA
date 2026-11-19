@@ -3,10 +3,9 @@ import Link from "next/link";
 import { apps } from "@/lib/apps";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import AppIcon from "@/components/AppIcon";
 
 export const metadata: Metadata = { title: "Layanan" };
-
-const variant = ["is-dark", "", "is-tint"];
 
 export default function LayananPage() {
   return (
@@ -22,11 +21,16 @@ export default function LayananPage() {
         </header>
 
         <div className="service-list">
-          {apps.map((app, i) => (
-            <article className={`service-row ${variant[i % variant.length]}`} key={app.id}>
+          {apps.map((app) => (
+            <article className="service-row" key={app.id}>
               <div>
-                <span className={`badge ${i === 0 ? "badge-soft" : "badge-muted"}`}>{app.category}</span>
-                <h2>{app.name}</h2>
+                <div className="service-row-head">
+                  <AppIcon id={app.id} size={20} />
+                  <div>
+                    <h2>{app.name}</h2>
+                    <span className="badge badge-tint">{app.category}</span>
+                  </div>
+                </div>
                 <p>{app.description}</p>
                 <dl className="meta">
                   <div><dt>Status</dt><dd>{app.status === "active" ? "Tersedia" : "Sedang dalam perawatan"}</dd></div>
@@ -35,11 +39,11 @@ export default function LayananPage() {
                 </dl>
               </div>
               {app.status === "active" ? (
-                <Link className={`btn ${i === 0 ? "btn-light" : "btn-primary"}`} href={app.href}>
+                <Link className="btn btn-primary" href={app.href}>
                   Buka {app.name}
                 </Link>
               ) : (
-                <span className="badge badge-muted">Belum tersedia</span>
+                <span className="badge badge-warn">Belum tersedia</span>
               )}
             </article>
           ))}
